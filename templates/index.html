@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rover Command Interface</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+</head>
+<body>
+    <div class="dashboard">
+        <div class="telemetry-grid">
+            <div class="sensor-item">
+                <div class="sensor-label">TEMPERATURE</div>
+                <p><span id="temp-value" class="sensor-value">--</span><span class="unit">C</span></p>
+            </div>
+            <div class="sensor-item">
+                <div class="sensor-label">DISTANCE</div>
+                <p><span id="dist-value" class="sensor-value">--</span><span class="unit">cm</span></p>
+            </div>
+            <div class="sensor-item">
+                <div class="sensor-label">IR LEFT</div>
+                <p id="ir-status-1" class="sensor-value clear">CLR</p>
+            </div>
+            <div class="sensor-item">
+                <div class="sensor-label"> IR RIGHT</div>
+                <p id="ir-status-2" class="sensor-value clear">CLR</p>
+            </div>
+            <div class="sensor-item">
+                <div class="sensor-label"> ACCEL X</div>
+                <p><span id="accel-value" class="sensor-value">--</span></p>
+            </div>
+        </div>
+        
+        <div class="chart-container">
+            <canvas id="sensorChart"></canvas>
+        </div>
+
+        <div class="control-panel">
+            <div class="controls">
+                <button id="btn-forward" class="control-btn">FWD</button>
+                <button id="btn-left" class="control-btn">LFT</button>
+                <button id="btn-stop" class="control-btn">STP</button>
+                <button id="btn-right" class="control-btn">RGT</button>
+                <button id="btn-backward" class="control-btn">BWD</button>
+            </div>
+        </div>
+        <div class="control-panel">
+            <div class="speed-control">
+                <label for="speed-slider">THROTTLE: <span id="speed-value">80</span>%</label>
+                <input type="range" id="speed-slider" min="30" max="100" value="80">
+            </div>
+            <div class="auto-control">
+                <button id="btn-log" class="auto-btn">START LOGGING</button>
+            </div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
